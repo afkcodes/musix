@@ -39,6 +39,15 @@
     "tailwindcss/no-contradicting-classname": "error",
     "space-in-parens": [1, "never"],
     "spaced-comment": ["error", "always"],
-    "react/prefer-stateless-function": 0
+    "react/prefer-stateless-function": 0,
+    "@typescript-eslint/ban-types": [
+      "error",
+      {
+        "extendDefaults": true,
+        "types": {
+          "{}": false
+        }
+      }
+    ]
   }
 }
