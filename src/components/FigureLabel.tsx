@@ -56,7 +56,7 @@ const FigureLabel: React.FC<FigureLabelPropsType> = ({
       role='button'
     >
       <Figure {...imageConfig} onLoad={setStatus} />
-      <LabelCombo {...labelConfig} status={status} />
+      <LabelCombo {...labelConfig} status={status} target='BLANK' />
     </div>
   );
 };

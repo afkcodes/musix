@@ -19,6 +19,16 @@ const textStyle: {
   ITALICS: 'italic'
 };
 
+type HrefTargetType = 'SELF' | 'BLANK' | 'PARENT' | 'TOP';
+const hrefTarget: {
+  [key in HrefTargetType]: string;
+} = {
+  SELF: '_self',
+  BLANK: '_blank',
+  PARENT: '_parent',
+  TOP: '_top'
+};
+
 export interface LabelComboPropsType {
   label: string;
   subLabel?: string;
@@ -29,6 +39,7 @@ export interface LabelComboPropsType {
   subLabelTextWeight?: TextWeightType;
   subLabelType?: 'TEXT' | 'LINK';
   subLabelHref?: string;
+  target?: HrefTargetType;
 }
 
 const LabelCombo: React.FC<LabelComboPropsType> = ({
@@ -40,14 +51,15 @@ const LabelCombo: React.FC<LabelComboPropsType> = ({
   labelTextWeight = 'MEDIUM',
   subLabelTextStyle = 'DEFAULT',
   subLabelTextWeight = 'NORMAL',
-  subLabelType = 'TEXT'
+  subLabelType = 'TEXT',
+  target = 'BLANK'
 }) => {
   return (
     <div className='truncate pt-1'>
       {status === 'SUCCESS' ? (
         <Fragment>
           <p
-            className={`overflow-hidden truncate whitespace-nowrap text-sm 
+            className={`overflow-hidden truncate whitespace-nowrap text-sm text-gray-300
               ${textStyle[labelTextStyle]} ${textWeight[labelTextWeight]}
             `}
           >
@@ -55,7 +67,7 @@ const LabelCombo: React.FC<LabelComboPropsType> = ({
           </p>
           {subLabel && subLabelType === 'TEXT' && subLabel !== '' ? (
             <p
-              className={`text-xs text-gray-600  
+              className={`text-xs text-gray-400  
                 ${textStyle[subLabelTextStyle]} ${textWeight[subLabelTextWeight]}
               `}
             >
@@ -63,10 +75,11 @@ const LabelCombo: React.FC<LabelComboPropsType> = ({
             </p>
           ) : (
             <a
-              className={`text-xs text-gray-600  
+              className={`text-xs text-gray-400
                 ${textStyle[subLabelTextStyle]} ${textWeight[subLabelTextWeight]}
               `}
               href={subLabelHref}
+              target={hrefTarget[target]}
             >
               {subLabel}
             </a>
