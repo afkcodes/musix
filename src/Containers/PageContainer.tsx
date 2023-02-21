@@ -14,7 +14,7 @@ const PageContainer = () => {
         classNames='fade'
         unmountOnExit
       >
-        {pages}
+        {() => <div className='bg-[#010101] pb-20 pt-4'>{pages}</div>}
       </CSSTransition>
     </SwitchTransition>
   );

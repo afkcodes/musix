@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import BottomTab from '~/components/BottomTab';
 import FigureLabel from '~/components/FigureLabel';
+import SnapCarousel from '~/components/SnapCarousel';
 
 const getHomeData = async () => {
   const res = await fetch(
@@ -27,134 +28,32 @@ const Home = () => {
 
   console.log(homeData);
   return (
-    <div className=' py-2'>
-      <Link to='/search'> Go to search page</Link>
-
-      <div className='no-scrollbar overflow-x-auto py-2'>
-        <ul className='flex snap-x snap-proximity '>
-          {homeData?.data?.albums?.map((album, idx) => (
-            <li className='mx-2 snap-normal' key={idx}>
-              <FigureLabel
-                imageConfig={{
-                  source: album.image[1].link,
-                  progressiveImageSource: album.image[0].link,
-                  shape: 'DEFAULT',
-                  altText: '',
-                  size: 'XXL'
-                }}
-                labelConfig={{
-                  label: album.name,
-                  subLabel: 'Vishal, Shekhar',
-                  subLabelType: 'LINK',
-                  subLabelHref: 'https://www.google.com',
-                  subLabelTextStyle: 'UNDERLINED'
-                }}
-                size='XXL'
-              />
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className='no-scrollbar overflow-x-auto py-2'>
-        <ul className='flex snap-x snap-proximity '>
-          {homeData?.data?.albums?.map((album, idx) => (
-            <li className='mx-2 snap-normal' key={idx}>
-              <FigureLabel
-                imageConfig={{
-                  source: album.image[1].link,
-                  progressiveImageSource: album.image[0].link,
-                  shape: 'DEFAULT',
-                  altText: '',
-                  size: 'XXL'
-                }}
-                labelConfig={{
-                  label: album.name,
-                  subLabel: 'Vishal, Shekhar',
-                  subLabelType: 'LINK',
-                  subLabelHref: 'https://www.google.com',
-                  subLabelTextStyle: 'UNDERLINED'
-                }}
-                size='XXL'
-              />
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className='no-scrollbar overflow-x-auto py-2'>
-        <ul className='flex snap-x snap-proximity '>
-          {homeData?.data?.albums?.map((album, idx) => (
-            <li className='mx-2 snap-normal' key={idx}>
-              <FigureLabel
-                imageConfig={{
-                  source: album.image[1].link,
-                  progressiveImageSource: album.image[0].link,
-                  shape: 'DEFAULT',
-                  altText: '',
-                  size: 'XXL'
-                }}
-                labelConfig={{
-                  label: album.name,
-                  subLabel: 'Vishal, Shekhar',
-                  subLabelType: 'LINK',
-                  subLabelHref: 'https://www.google.com',
-                  subLabelTextStyle: 'UNDERLINED'
-                }}
-                size='XXL'
-              />
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className='no-scrollbar overflow-x-auto py-2'>
-        <ul className='flex snap-x snap-proximity '>
-          {homeData?.data?.albums?.map((album, idx) => (
-            <li className='mx-2 snap-normal' key={idx}>
-              <FigureLabel
-                imageConfig={{
-                  source: album.image[1].link,
-                  progressiveImageSource: album.image[0].link,
-                  shape: 'DEFAULT',
-                  altText: '',
-                  size: 'XXL'
-                }}
-                labelConfig={{
-                  label: album.name,
-                  subLabel: 'Vishal, Shekhar',
-                  subLabelType: 'LINK',
-                  subLabelHref: 'https://www.google.com',
-                  subLabelTextStyle: 'UNDERLINED'
-                }}
-                size='XXL'
-              />
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className='no-scrollbar overflow-x-auto py-2'>
-        <ul className='flex snap-x snap-proximity '>
-          {homeData?.data?.albums?.map((album, idx) => (
-            <li className='mx-2 snap-normal' key={idx}>
-              <FigureLabel
-                imageConfig={{
-                  source: album.image[1].link,
-                  progressiveImageSource: album.image[0].link,
-                  shape: 'DEFAULT',
-                  altText: '',
-                  size: 'XXL'
-                }}
-                labelConfig={{
-                  label: album.name,
-                  subLabel: 'Vishal, Shekhar',
-                  subLabelType: 'LINK',
-                  subLabelHref: 'https://www.google.com',
-                  subLabelTextStyle: 'UNDERLINED'
-                }}
-                size='XXL'
-              />
-            </li>
-          ))}
-        </ul>
-      </div>
+    <div className='relative'>
+      {[1, 2, 3, 5, 6].map((el, id) => (
+        <div className='no-scrollbar overflow-x-auto py-2' key={id}>
+          <SnapCarousel type='FLOW'>
+            {homeData?.data?.trending?.albums?.map((album, idx) => (
+              <li className='mx-2 snap-normal' key={idx}>
+                <FigureLabel
+                  imageConfig={{
+                    source: album.image[2].link,
+                    progressiveImageSource: album.image[0].link,
+                    shape: 'DEFAULT',
+                    altText: '',
+                    size: 'XXL'
+                  }}
+                  labelConfig={{
+                    label: album.name,
+                    subLabel: 'Vishal, Shekhar'
+                  }}
+                  size='XXL'
+                />
+              </li>
+            ))}
+          </SnapCarousel>
+        </div>
+      ))}
+      <BottomTab />
     </div>
   );
 };
