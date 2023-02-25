@@ -9,7 +9,7 @@ html {
   user-select: none;
   -webkit-tap-highlight-color: transparent;
   font-family: 'Poppins', sans-serif;
-  /* background: #000; */
+  background: #100f0f;
 }
 
 /* 
@@ -17,24 +17,24 @@ CSS Page Transition for Class,
 */
 .fade-enter {
   opacity: 0;
-  transform: translate(0, 50%);
+  transform: translate(0, 100%);
   z-index: 1;
 }
 .fade-enter.fade-enter-active {
   opacity: 1;
   transform: translate(0, 0);
 
-  transition: opacity 200ms ease-in, transform 200ms ease-in;
+  transition: opacity 150ms ease-in, transform 150ms ease-in;
 }
-/* .fade-exit {
+.fade-exit {
   opacity: 0;
   transform: translate(0, 0);
-} */
-/* .fade-exit.fade-exit-active {
+}
+.fade-exit.fade-exit-active {
   opacity: 0;
-  transform: translate(0, 10px);
-  transition: opacity 200ms ease, transform 200ms ease;
-} */
+  transform: translate(0, 100%);
+  transition: opacity 150ms ease, transform 150ms ease;
+}
 
 /* 
 Tailwind classes extensions
