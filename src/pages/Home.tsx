@@ -41,13 +41,13 @@ const Home = () => {
                     progressiveImageSource: album.image[0].link,
                     shape: 'DEFAULT',
                     altText: '',
-                    size: 'XL'
+                    size: 'XXL'
                   }}
                   labelConfig={{
                     label: album.name,
                     subLabel: 'Vishal, Shekhar'
                   }}
-                  size='XL'
+                  size='XXL'
                   orientation='VERTICAL'
                 />
               </li>

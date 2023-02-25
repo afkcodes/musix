@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, memo } from 'react';
 import { createPortal } from 'react-dom';
 import { CgMediaPodcast } from 'react-icons/cg';
 import { RiHome5Line, RiSearchLine, RiSettingsLine } from 'react-icons/ri';
@@ -28,7 +28,7 @@ const BottomTab = () => {
                 <div className='flex flex-col items-center justify-center'>
                   <div>
                     <Button
-                      type='ICON'
+                      type='LINK'
                       iconConfig={{ icon: el.icon, position: 'CENTER' }}
                       onClick={() => {
                         navigate(el.route);
@@ -46,4 +46,4 @@ const BottomTab = () => {
   );
 };
 
-export default BottomTab;
+export default memo(BottomTab);

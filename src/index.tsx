@@ -1,6 +1,7 @@
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import 'tailwindcss/tailwind.css';
+import BottomTab from './components/BottomTab';
 import PageContainer from './Containers/PageContainer';
 import './index.css';
 
@@ -10,5 +11,6 @@ const root = createRoot(container);
 root.render(
   <BrowserRouter>
     <PageContainer />
+    <BottomTab />
   </BrowserRouter>
 );

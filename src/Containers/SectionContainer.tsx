@@ -1,6 +1,10 @@
 import SectionHeader from '~/components/SectionHeader';
 
-const SectionContainer = ({ children }) => {
+interface SectionContainerProps {
+  children: React.ReactNode;
+}
+
+const SectionContainer: React.FC<SectionContainerProps> = ({ children }) => {
   return (
     <section className='py-2'>
       <div className='mb-2 px-3'>

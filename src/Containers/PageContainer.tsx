@@ -8,13 +8,13 @@ const PageContainer = () => {
 
   return (
     <SwitchTransition>
-      <CSSTransition
-        key={location.pathname}
-        timeout={300}
-        classNames='fade'
-        unmountOnExit
-      >
-        {() => <div className='bg-[#100F0F] pb-20 pt-4'>{pages}</div>}
+      <CSSTransition key={location.pathname} classNames='fade' timeout={300}>
+        <div
+          key={location.pathname}
+          className='overflow-auto bg-[#100F0F] pb-20 pt-4'
+        >
+          {pages}
+        </div>
       </CSSTransition>
     </SwitchTransition>
   );

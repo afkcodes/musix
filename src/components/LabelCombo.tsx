@@ -66,7 +66,7 @@ const LabelCombo: React.FC<LabelComboPropsType> = ({
   textAlign = 'LEFT'
 }) => {
   return (
-    <div className={`truncate pt-1 ${textAlignStyle[textAlign]}`}>
+    <div className={`truncate pt-2 ${textAlignStyle[textAlign]}`}>
       {status === 'SUCCESS' ? (
         <Fragment>
           <p
