@@ -14,7 +14,10 @@
   },
   "dependencies": {
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.7.1",
+    "react-router-dom": "^6.8.1",
+    "react-transition-group": "^4.4.5"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
@@ -26,6 +29,7 @@
     "@types/node": "^18.13.0",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.10",
+    "@types/react-transition-group": "^4.4.5",
     "@types/testing-library__jest-dom": "^5.14.5",
     "@typescript-eslint/eslint-plugin": "^5.51.0",
     "@typescript-eslint/parser": "^5.51.0",

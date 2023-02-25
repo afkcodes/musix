@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+Global styles
+*/
+html {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  font-family: 'Poppins', sans-serif;
+  /* background: #000; */
+}
+
+/* 
+CSS Page Transition for Class,
+*/
+.fade-enter {
+  opacity: 0;
+  transform: translate(0, 50%);
+  z-index: 1;
+}
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transform: translate(0, 0);
+
+  transition: opacity 200ms ease-in, transform 200ms ease-in;
+}
+/* .fade-exit {
+  opacity: 0;
+  transform: translate(0, 0);
+} */
+/* .fade-exit.fade-exit-active {
+  opacity: 0;
+  transform: translate(0, 10px);
+  transition: opacity 200ms ease, transform 200ms ease;
+} */
+
+/* 
+Tailwind classes extensions
+ */
+
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
