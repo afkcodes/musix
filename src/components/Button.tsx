@@ -10,7 +10,7 @@ const buttonStyle: {
     'border border-[#d80000] active:border-red-700 text-[#d80000] active:text-red-700',
   GHOST: 'bg-none hover:bg-[#d8000025] active:bg-[#d8000035] text-[#d80000]',
   LINK: '',
-  ICON: 'outline-none text-[#d80000] p-2 '
+  ICON: 'outline-none text-white p-2 '
 };
 
 type ButtonStyleShapeType =
