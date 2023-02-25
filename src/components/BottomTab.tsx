@@ -16,7 +16,7 @@ const BottomTab = () => {
     <Fragment>
       {portal &&
         createPortal(
-          <div className='fixed bottom-0 flex h-16 w-full bg-[#010101]/40 bg-clip-padding text-white backdrop-blur-sm'>
+          <div className='fixed bottom-0 flex h-16 w-full bg-[#010101]/40 bg-clip-padding text-white backdrop-blur-md'>
             {bottomTabData.map((el, idx) => (
               <div
                 key={idx}

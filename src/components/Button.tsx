@@ -1,4 +1,7 @@
+import { ReactElement } from 'react';
+
 type ButtonStyleType = 'PRIMARY' | 'OUTLINE' | 'GHOST' | 'LINK' | 'ICON';
+
 const buttonStyle: {
   [key in ButtonStyleType]: string;
 } = {
@@ -7,16 +10,23 @@ const buttonStyle: {
     'border border-[#d80000] active:border-red-700 text-[#d80000] active:text-red-700',
   GHOST: 'bg-none hover:bg-[#d8000025] active:bg-[#d8000035] text-[#d80000]',
   LINK: '',
-  ICON: ''
+  ICON: 'outline-none text-[#d80000] p-2 '
 };
 
-type ButtonStyleShapeType = 'DEFAULT' | 'ROUNDED_EDGE' | 'ROUNDED_FULL';
+type ButtonStyleShapeType =
+  | 'DEFAULT'
+  | 'ROUNDED_EDGE'
+  | 'ROUNDED_FULL'
+  | 'CIRCLE'
+  | 'UNSTYLED';
 const buttonStyleShape: {
   [key in ButtonStyleShapeType]: string;
 } = {
-  DEFAULT: 'rounded-none',
-  ROUNDED_EDGE: 'rounded',
-  ROUNDED_FULL: 'rounded-full'
+  DEFAULT: 'rounded-none px-4 py-2',
+  ROUNDED_EDGE: 'rounded px-4 py-2',
+  ROUNDED_FULL: 'rounded-full px-4 py-2',
+  CIRCLE: 'rounded-full',
+  UNSTYLED: ''
 };
 
 type ButtonTextWeightType = 'NORMAL' | 'MEDIUM' | 'SEMI_BOLD' | 'BOLD';
@@ -38,23 +48,53 @@ const buttonTextStyle: {
   ITALICS: 'italic'
 };
 
+type IconPosition = 'LEFT' | 'RIGHT' | 'CENTER';
+const IconPositionStyle: { [key in IconPosition]: string } = {
+  LEFT: 'mr-2',
+  RIGHT: 'ml-2',
+  CENTER: 'm-0 p-0'
+};
+
+type FontSizeType = 'XS' | 'SM' | 'MD' | 'LG' | 'XL' | 'XXL' | 'XXXL';
+const fontSizeMap: { [key in FontSizeType]: string } = {
+  XS: 'text-xs',
+  SM: 'text-sm',
+  MD: 'text-md',
+  LG: 'text-lg',
+  XL: 'text-xl',
+  XXL: 'text-2xl',
+  XXXL: 'text-3xl'
+};
+
+interface IconConfig {
+  icon: ReactElement;
+  position: IconPosition;
+  customClass?: string;
+}
+
 interface ButtonPropsType {
-  content: string;
+  text?: string;
   behavior?: 'BUTTON' | 'LINK';
   type?: ButtonStyleType;
   shape?: ButtonStyleShapeType;
   textWeight?: ButtonTextWeightType;
   textStyle?: ButtonTextStyleType;
+  iconConfig?: IconConfig;
+  href?: string;
+  fontSize?: FontSizeType;
   onClick?: () => void;
 }
 
 const Button = ({
-  content,
+  text,
+  iconConfig,
+  href,
   behavior = 'BUTTON',
   type = 'PRIMARY',
   shape = 'ROUNDED_FULL',
   textWeight = 'NORMAL',
   textStyle = 'DEFAULT',
+  fontSize = 'MD',
   onClick = () => {
     console.log('Button Clicked');
   }
@@ -63,25 +103,39 @@ const Button = ({
     <>
       {behavior === 'LINK' ? (
         <a
-          href='https://www.google.com'
-          className={`flex items-center justify-center px-4 py-2 transition-all duration-200 ease-in ${buttonStyle[type]} 
-          ${buttonStyleShape[shape]} ${buttonTextWeight[textWeight]} ${buttonTextStyle[textStyle]}`}
+          href={href}
+          className={`flex items-center justify-center transition-all duration-200 ease-in ${buttonStyle[type]} 
+          ${buttonStyleShape[shape]} ${buttonTextWeight[textWeight]} ${buttonTextStyle[textStyle]}
+          ${fontSizeMap[fontSize]}`}
         >
-          {content}
+          {text}
         </a>
       ) : (
-        <button
-          className={`flex items-center justify-center px-4 py-2 transition-all duration-200 ease-in  ${buttonStyle[type]} ${buttonStyleShape[shape]}`}
+        <div
+          className={`inline-flex items-center justify-center transition-all duration-200 ease-in 
+          ${iconConfig?.position === 'RIGHT' ? 'flex-row-reverse' : ''}
+          ${buttonStyle[type]} ${buttonStyleShape[shape]}`}
           onClick={() => {
             onClick();
           }}
+          role='button'
         >
-          <span
-            className={` ${buttonTextWeight[textWeight]} ${buttonTextStyle[textStyle]}`}
-          >
-            {content}
-          </span>
-        </button>
+          {iconConfig?.icon ? (
+            <div
+              className={` 
+              ${IconPositionStyle[iconConfig.position]}`}
+            >
+              {iconConfig?.icon}
+            </div>
+          ) : null}
+          {text && text !== '' ? (
+            <p
+              className={` ${buttonTextWeight[textWeight]} ${buttonTextStyle[textStyle]} ${fontSizeMap[fontSize]}`}
+            >
+              {text}
+            </p>
+          ) : null}
+        </div>
       )}
     </>
   );

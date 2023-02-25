@@ -29,6 +29,15 @@ const hrefTarget: {
   TOP: '_top'
 };
 
+type TextAlignType = 'LEFT' | 'CENTER' | 'RIGHT';
+const textAlignStyle: {
+  [key in TextAlignType]: string;
+} = {
+  LEFT: 'text-left',
+  RIGHT: 'text-right',
+  CENTER: 'text-center'
+};
+
 export interface LabelComboPropsType {
   label: string;
   subLabel?: string;
@@ -40,6 +49,7 @@ export interface LabelComboPropsType {
   subLabelType?: 'TEXT' | 'LINK';
   subLabelHref?: string;
   target?: HrefTargetType;
+  textAlign?: TextAlignType;
 }
 
 const LabelCombo: React.FC<LabelComboPropsType> = ({
@@ -52,10 +62,11 @@ const LabelCombo: React.FC<LabelComboPropsType> = ({
   subLabelTextStyle = 'DEFAULT',
   subLabelTextWeight = 'NORMAL',
   subLabelType = 'TEXT',
-  target = 'BLANK'
+  target = 'BLANK',
+  textAlign = 'LEFT'
 }) => {
   return (
-    <div className='truncate pt-1'>
+    <div className={`truncate pt-1 ${textAlignStyle[textAlign]}`}>
       {status === 'SUCCESS' ? (
         <Fragment>
           <p
@@ -67,7 +78,7 @@ const LabelCombo: React.FC<LabelComboPropsType> = ({
           </p>
           {subLabel && subLabelType === 'TEXT' && subLabel !== '' ? (
             <p
-              className={`text-xs text-gray-400  
+              className={`overflow-hidden truncate  whitespace-nowrap text-xs text-gray-400
                 ${textStyle[subLabelTextStyle]} ${textWeight[subLabelTextWeight]}
               `}
             >
@@ -75,7 +86,7 @@ const LabelCombo: React.FC<LabelComboPropsType> = ({
             </p>
           ) : (
             <a
-              className={`text-xs text-gray-400
+              className={`overflow-hidden truncate whitespace-nowrap text-xs text-gray-400
                 ${textStyle[subLabelTextStyle]} ${textWeight[subLabelTextWeight]}
               `}
               href={subLabelHref}

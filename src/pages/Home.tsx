@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import BottomTab from '~/components/BottomTab';
 import FigureLabel from '~/components/FigureLabel';
 import SnapCarousel from '~/components/SnapCarousel';
+import SectionContainer from '~/Containers/SectionContainer';
 
 const getHomeData = async () => {
   const res = await fetch(
@@ -29,30 +30,107 @@ const Home = () => {
   console.log(homeData);
   return (
     <div className='relative'>
-      {[1, 2, 3, 5, 6].map((el, id) => (
-        <div className='no-scrollbar overflow-x-auto py-2' key={id}>
-          <SnapCarousel type='FLOW'>
+      <SectionContainer>
+        {[1].map((el, id) => (
+          <SnapCarousel type='DEFAULT' key={id}>
             {homeData?.data?.trending?.albums?.map((album, idx) => (
-              <li className='mx-2 snap-normal' key={idx}>
+              <li className='snap-center' key={idx}>
                 <FigureLabel
                   imageConfig={{
                     source: album.image[2].link,
                     progressiveImageSource: album.image[0].link,
                     shape: 'DEFAULT',
                     altText: '',
-                    size: 'XXL'
+                    size: 'XL'
                   }}
                   labelConfig={{
                     label: album.name,
                     subLabel: 'Vishal, Shekhar'
                   }}
-                  size='XXL'
+                  size='XL'
+                  orientation='VERTICAL'
                 />
               </li>
             ))}
           </SnapCarousel>
-        </div>
-      ))}
+        ))}
+      </SectionContainer>
+      <SectionContainer>
+        {[1].map((el, id) => (
+          <SnapCarousel type='DEFAULT' key={id}>
+            {homeData?.data?.trending?.albums?.map((album, idx) => (
+              <li className='snap-center' key={idx}>
+                <FigureLabel
+                  imageConfig={{
+                    source: album.image[2].link,
+                    progressiveImageSource: album.image[0].link,
+                    shape: 'CIRCLE',
+                    altText: '',
+                    size: 'XL'
+                  }}
+                  labelConfig={{
+                    label: album.name,
+                    textAlign: 'CENTER'
+                  }}
+                  size='XL'
+                  orientation='VERTICAL'
+                />
+              </li>
+            ))}
+          </SnapCarousel>
+        ))}
+      </SectionContainer>
+      <SectionContainer>
+        {[1].map((el, id) => (
+          <SnapCarousel type='FLOW' key={id}>
+            {homeData?.data?.trending?.albums?.map((album, idx) => (
+              <li key={idx}>
+                <FigureLabel
+                  imageConfig={{
+                    source: album.image[2].link,
+                    progressiveImageSource: album.image[0].link,
+                    shape: 'DEFAULT',
+                    altText: '',
+                    size: 'SM'
+                  }}
+                  labelConfig={{
+                    label: album.name,
+                    subLabel: 'Vishal, Shekhar'
+                  }}
+                  size='SM'
+                  orientation='HORIZONTAL'
+                />
+              </li>
+            ))}
+          </SnapCarousel>
+        ))}
+      </SectionContainer>
+      <SectionContainer>
+        {[1].map((el, id) => (
+          <SnapCarousel type='DEFAULT' key={id}>
+            {homeData?.data?.trending?.albums?.map((album, idx) => (
+              <li className='snap-center' key={idx}>
+                <FigureLabel
+                  imageConfig={{
+                    source: album.image[2].link,
+                    progressiveImageSource: album.image[0].link,
+                    shape: 'DEFAULT',
+                    altText: '',
+                    size: 'XL'
+                  }}
+                  labelConfig={{
+                    label: album.name,
+                    subLabel: 'Vishal, Shekhar'
+                  }}
+                  size='XL'
+                  orientation='VERTICAL'
+                />
+              </li>
+            ))}
+          </SnapCarousel>
+        ))}
+      </SectionContainer>
+
       <BottomTab />
     </div>
   );

@@ -91,55 +91,53 @@ const Figure: React.FC<FigurePropsType> = ({
       tabIndex={0}
     >
       <div className='absolute z-10 h-full w-full opacity-0 transition-all duration-200 group-active:bg-black group-active:opacity-40' />
-      <FallbackImage
-        source={source}
-        alt={altText}
-        fitStrategy={fitStrategy[imageFitStrategy]}
-        loadingStrategy={loadStrategy[loadingStrategy]}
-        progressiveImageSource={progressiveImageSource}
-        onLoad={onLoad}
-      />
-      {/* <div
-        className={`w-full h-full flex flex-wrap  ${shapeStyleMap.ROUNDED_SQUARE}`}>
-        <div className='h-1/2 w-1/2 p-0 m-0'>
-          <FallbackImage
-            source={imageUrl}
-            alt='Elephant at sunset'
-            fitStrategy={fitStrategy.COVER}
-            loadingStrategy={loadStrategy.LAZY}
-          />
+      {arrangeMode[mode] === 'SINGLE' ? (
+        <FallbackImage
+          source={source}
+          alt={altText}
+          fitStrategy={fitStrategy[imageFitStrategy]}
+          loadingStrategy={loadStrategy[loadingStrategy]}
+          progressiveImageSource={progressiveImageSource}
+          onLoad={onLoad}
+        />
+      ) : (
+        <div
+          className={`flex h-full w-full flex-wrap  ${shapeStyleMap.ROUNDED_SQUARE}`}
+        >
+          <div className='m-0 h-1/2 w-1/2 p-0'>
+            <FallbackImage
+              source={source}
+              alt='Elephant at sunset'
+              fitStrategy={fitStrategy.COVER}
+              loadingStrategy={loadStrategy.LAZY}
+            />
+          </div>
+          <div className='m-0 h-1/2 w-1/2 p-0'>
+            <FallbackImage
+              source={source}
+              alt='Elephant at sunset'
+              fitStrategy={fitStrategy.COVER}
+              loadingStrategy={loadStrategy.LAZY}
+            />
+          </div>
+          <div className='m-0 h-1/2 w-1/2 p-0'>
+            <FallbackImage
+              source={source}
+              alt='Elephant at sunset'
+              fitStrategy={fitStrategy.COVER}
+              loadingStrategy={loadStrategy.LAZY}
+            />
+          </div>
+          <div className='m-0 h-1/2 w-1/2 p-0'>
+            <FallbackImage
+              source={source}
+              alt='Elephant at sunset'
+              fitStrategy={fitStrategy.COVER}
+              loadingStrategy={loadStrategy.LAZY}
+            />
+          </div>
         </div>
-        <div className='h-1/2 w-1/2 p-0 m-0'>
-          <FallbackImage
-            source={
-              'https://media.alwayspets.com/58/d6/58d6dcb3765546d0a8248c632f02b664.jpeg'
-            }
-            alt='Elephant at sunset'
-            fitStrategy={fitStrategy.COVER}
-            loadingStrategy={loadStrategy.LAZY}
-          />
-        </div>
-        <div className='h-1/2 w-1/2 p-0 m-0'>
-          <FallbackImage
-            source={
-              'https://images.squarespace-cdn.com/content/v1/54e7a1a6e4b08db9da801ded/fdecc7f0-42bf-4696-bd4c-73a868e5d1d2/81.jpg'
-            }
-            alt='Elephant at sunset'
-            fitStrategy={fitStrategy.COVER}
-            loadingStrategy={loadStrategy.LAZY}
-          />
-        </div>
-        <div className='h-1/2 w-1/2 p-0 m-0'>
-          <FallbackImage
-            source={
-              'https://images.unsplash.com/photo-1591160690555-5debfba289f0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8Z29sZGVuJTIwcmV0cmlldmVyJTIwcHVwcHl8ZW58MHx8MHx8&w=1000&q=80'
-            }
-            alt='Elephant at sunset'
-            fitStrategy={fitStrategy.COVER}
-            loadingStrategy={loadStrategy.LAZY}
-          />
-        </div>
-      </div> */}
+      )}
     </figure>
   );
 };

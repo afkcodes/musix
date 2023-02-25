@@ -2,8 +2,9 @@ type CarouselType = 'DEFAULT' | 'FLOW';
 const CarouselStyleMap: {
   [key in CarouselType]: string;
 } = {
-  DEFAULT: 'flex snap-x snap-proximity',
-  FLOW: 'grid snap-x snap-proximity grid-flow-col grid-rows-2 gap-y-4 '
+  DEFAULT:
+    'flex snap-x snap-proximity no-scrollbar overflow-x-auto gap-x-4 px-3',
+  FLOW: 'grid snap-x snap-proximity no-scrollbar overflow-x-auto grid-flow-col grid-rows-3 gap-4 px-3'
 };
 
 interface SnapCarouselPropsType {

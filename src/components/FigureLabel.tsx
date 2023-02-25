@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import ActionRowContainer from './ActionRowContainer';
 import Figure, { FigurePropsType } from './Figure';
 import LabelCombo, { LabelComboPropsType } from './LabelCombo';
 
@@ -40,23 +41,36 @@ interface FigureLabelPropsType {
   labelConfig: LabelComboPropsType;
   size?: SizeType;
   labelPosition?: LabelPositionType;
+  orientation?: 'VERTICAL' | 'HORIZONTAL';
 }
 const FigureLabel: React.FC<FigureLabelPropsType> = ({
   imageConfig,
   labelConfig,
   size = 'MD',
-  labelPosition = 'LEFT'
+  labelPosition = 'LEFT',
+  orientation = 'HORIZONTAL'
 }) => {
   const [status, setStatus] = useState<string>('LOADING');
+  const isHorizontal = orientation === 'HORIZONTAL';
   return (
     <div
-      className={`group relative cursor-pointer duration-200 active:scale-[0.99]
-        ${sizeMap[size]} ${labelPositionMap[labelPosition]}
+      className={`group relative cursor-pointer
+        ${labelPositionMap[labelPosition]}
+        ${isHorizontal ? 'w-screen md:w-80' : sizeMap[size]}
       `}
       role='button'
     >
-      <Figure {...imageConfig} onLoad={setStatus} />
-      <LabelCombo {...labelConfig} status={status} target='BLANK' />
+      <div className={`${isHorizontal ? 'flex justify-between' : ''}`}>
+        <div className='shrink-0'>
+          <Figure {...imageConfig} onLoad={setStatus} />
+        </div>
+        <div className={`${isHorizontal ? 'group mx-2 flex flex-1' : ''}`}>
+          <div className={`${isHorizontal ? 'w-40 flex-1' : ''}`}>
+            <LabelCombo {...labelConfig} status={status} target='BLANK' />
+          </div>
+          {isHorizontal ? <ActionRowContainer /> : null}
+        </div>
+      </div>
     </div>
   );
 };
