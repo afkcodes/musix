@@ -1,12 +1,18 @@
-import { Fragment, memo } from 'react';
+import { Fragment, memo, ReactElement } from 'react';
 import { createPortal } from 'react-dom';
 import { CgMediaPodcast } from 'react-icons/cg';
 import { RiHome5Line, RiSearchLine, RiSettingsLine } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
 import Button from './Button';
-const portal = document.getElementById('bottom_navigation_portal');
 
-const bottomTabData = [
+const portal = document.getElementById('bottom_navigation_portal');
+interface bottomTabDataType {
+  icon: ReactElement;
+  text: string;
+  route: string;
+}
+
+const bottomTabData: bottomTabDataType[] = [
   { icon: <RiHome5Line size={24} />, text: 'Home', route: '/' },
   { icon: <RiSearchLine size={24} />, text: 'Search', route: '/search' },
   { icon: <CgMediaPodcast size={24} />, text: 'Podcasts', route: '/podcast' },
@@ -28,7 +34,7 @@ const BottomTab = () => {
                 <div className='flex flex-col items-center justify-center'>
                   <div>
                     <Button
-                      type='LINK'
+                      type='ICON'
                       iconConfig={{ icon: el.icon, position: 'CENTER' }}
                       onClick={() => {
                         navigate(el.route);

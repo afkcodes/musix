@@ -8,7 +8,7 @@ const PageContainer = () => {
 
   return (
     <SwitchTransition>
-      <CSSTransition key={location.pathname} classNames='fade' timeout={300}>
+      <CSSTransition key={location.pathname} classNames='fade' timeout={100}>
         <div
           key={location.pathname}
           className='overflow-auto bg-[#100F0F] pb-20 pt-4'
