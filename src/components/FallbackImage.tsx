@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const getOrientation = async (img: HTMLImageElement) => {
   const width = img.naturalWidth || img.width;
@@ -47,6 +47,17 @@ export const FallbackImage = ({
     setStatus('ERROR');
   };
 
+  useEffect(() => {
+    const image = new Image();
+    image.src = src;
+    image.onload = () => {
+      onImageLoad();
+    };
+    image.onerror = () => {
+      onImageLoadError();
+    };
+  }, [src]);
+
   return (
     <>
       {status === 'LOADING' ? (
@@ -61,24 +72,19 @@ export const FallbackImage = ({
           transition-all duration-200 ease-in`}
           tabIndex={0}
         />
-      ) : null}
-      <img
-        ref={imgRef}
-        src={src || progressiveImageSource}
-        srcSet={src}
-        alt={alt}
-        onError={() => {
-          onImageLoadError();
-        }}
-        loading={loadStrategy}
-        className={`h-full w-full ${fitStrategy} 
+      ) : (
+        <img
+          ref={imgRef}
+          src={src || progressiveImageSource}
+          srcSet={src}
+          alt={alt}
+          loading={loadStrategy}
+          className={`h-full w-full ${fitStrategy} 
         ${status === 'LOADING' ? 'opacity-80 blur-sm' : 'opacity-100 blur-0'} 
         transition-all duration-200 ease-in`}
-        onLoad={() => {
-          onImageLoad();
-        }}
-        tabIndex={0}
-      />
+          tabIndex={0}
+        />
+      )}
     </>
   );
 };
